@@ -9,9 +9,11 @@ import axios from 'axios'
 type Props = {}
 
 const UploadContainer = (props: Props) => {
+
     const onDrop = useCallback((acceptedFiles: File[]) => {
         mutation.mutate(acceptedFiles[0])
       }, [])
+
     const {getRootProps, getInputProps, isDragActive} = useDropzone({onDrop})
     
     // Mutations
