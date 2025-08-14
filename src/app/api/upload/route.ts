@@ -4,6 +4,7 @@ import { RecursiveCharacterTextSplitter } from "@langchain/textsplitters";
 import { Document } from "@langchain/core/documents";
 import {pc, index} from "@/lib/pinecone";
 import { Md5 } from "ts-md5";
+import { insetFile } from "@/db";
 
 export async function POST(req: Request) {
     try {
@@ -30,6 +31,9 @@ export async function POST(req: Request) {
 
     // 3. upload to vector db
     const res = await Promise.all(splitDocs.map(embedChunks));
+
+    // 4. save file to db
+    await insetFile(file.name, Md5.hashStr(file.name))
 
     return NextResponse.json({ message: "File uploaded successfully" })
 
