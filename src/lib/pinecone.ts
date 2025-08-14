@@ -4,3 +4,5 @@ export const pc = new Pinecone({
   apiKey: process.env.PINECONE_API_KEY!
 });
 
+export const index = pc.index(process.env.INDEX_NAME!).namespace(process.env.NAMESPACE!);
+
