@@ -2,7 +2,7 @@ import { NextResponse } from "next/server";
 import { WebPDFLoader } from "@langchain/community/document_loaders/web/pdf";
 import { RecursiveCharacterTextSplitter } from "@langchain/textsplitters";
 import { Document } from "@langchain/core/documents";
-import {pc, index} from "@/lib/pinecone";
+import { pc, index} from "@/lib/pinecone";
 import { Md5 } from "ts-md5";
 import { insetFile } from "@/db";
 
@@ -55,7 +55,7 @@ const splitDoc = async (doc: Document) => {
 
 
 const embedChunks = async (chunks: string[]) => {
-
+    const batchSize = 96;
     // create records with Md5
     const records = chunks.map((chunk, index) => ({
         _id: Md5.hashStr(chunk),
@@ -63,6 +63,18 @@ const embedChunks = async (chunks: string[]) => {
         category: 'pdf_document'
     }));
 
-    // console.log(records)
-    return await index.upsertRecords(records)
+    // batch upsert
+    const batches = [];
+    for (let i = 0; i < records.length; i += batchSize) {
+        batches.push(records.slice(i, i + batchSize));
+    }
+
+    for (const batch of batches) {
+        await index.upsertRecords(batch);
+        // console.log(`Uploaded batch of ${batch.length} records`);
+    }
+    
+    console.log(`Total uploaded: ${records.length} records in ${batches.length} batches`);
+
+
 }
