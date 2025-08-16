@@ -1,9 +1,10 @@
-import { pgTable, varchar,serial,timestamp } from "drizzle-orm/pg-core";
+import { pgTable, varchar,serial,timestamp,text } from "drizzle-orm/pg-core";
 
 export const fileTable = pgTable("files", {
   id: serial("id").primaryKey(),
   file_name: varchar('file_name').notNull(),
   file_key: varchar('file_key').notNull(),
+  notes: text('notes'),
   created_at: timestamp('created_at').defaultNow(),
 });
 
