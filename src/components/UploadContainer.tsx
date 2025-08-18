@@ -80,44 +80,11 @@ const UploadContainer = (props: Props) => {
                         <p key={file.id} className='text-center text-sm p-2'>
                             {file.file_name}
                         </p>
-                        
-                        <button
-                        onClick={() => handleEditNote(file)}
-                        className='text-xs text-blue-600 hover:text-blue-800 px-2 py-1 rounded'
-                        >
-                        {file.notes ? 'Edit Note' : 'Add Note'}
-                        </button>
-
-
-                        </div>)
-
-                    ({editingNoteId === file.id ? (
-                        // 编辑模式：显示textarea和保存/取消按钮
-                        <div className='space-y-2'>
-                            <textarea
-                                value={noteText}
-                                onChange={(e) => setNoteText(e.target.value)}
-                                placeholder="Add a note about this file..."
-                                className='w-full p-2 text-xs border rounded-md resize-none focus:outline-none focus:ring-2 focus:ring-blue-500'
-                                rows={3}
-                            />
-                            <div className='flex space-x-2'>
-                                <button onClick={() => handleSaveNote(file.id)}>Save</button>
-                                <button onClick={handleCancelEdit}>Cancel</button>
-                            </div>
                         </div>
-                    ) : (
-                        // 显示模式：显示已有的note
-                        file.notes && (
-                            <p className='text-xs text-gray-600 bg-gray-50 p-2 rounded'>
-                                {file.notes}
-                            </p>
-                        )
-                    )
+                    )))
                 }
-            
-            
             </div>
+
 
             <div className='flex-shrink-0 p-2'>
                 <div {...getRootProps()}

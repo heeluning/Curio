@@ -33,7 +33,7 @@ export async function POST(req: Request) {
     const res = await Promise.all(splitDocs.map(embedChunks));
 
     // 4. save file to db
-    await insetFile(file.name, Md5.hashStr(file.name))
+    await insetFile(file.name, Md5.hashStr(file.name), null)
 
     return NextResponse.json({ message: "File uploaded successfully" })
 
