@@ -1,5 +1,5 @@
 {
-  "id": "52637b98-65aa-4b81-9ea4-334f73d54230",
+  "id": "8824373c-989d-4ee5-a0dd-84a17d76cfb7",
   "prevId": "00000000-0000-0000-0000-000000000000",
   "version": "7",
   "dialect": "postgresql",
@@ -8,36 +8,11 @@
       "name": "files",
       "schema": "",
       "columns": {
-        "id": {
-          "name": "id",
-          "type": "serial",
-          "primaryKey": true,
-          "notNull": true
-        },
-        "file_name": {
-          "name": "file_name",
-          "type": "varchar",
-          "primaryKey": false,
-          "notNull": true
-        },
-        "file_key": {
-          "name": "file_key",
-          "type": "varchar",
-          "primaryKey": false,
-          "notNull": true
-        },
         "notes": {
           "name": "notes",
           "type": "text",
           "primaryKey": false,
           "notNull": false
-        },
-        "created_at": {
-          "name": "created_at",
-          "type": "timestamp",
-          "primaryKey": false,
-          "notNull": false,
-          "default": "now()"
         }
       },
       "indexes": {},

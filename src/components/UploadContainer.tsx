@@ -76,11 +76,11 @@ const UploadContainer = (props: Props) => {
                     (<p className='text-center text-sm text-gray-500 p-2'>Loading...</p> 
                     ):(
                     files?.data.map((file: FileModal) => (
-                        <div>
+
                         <p key={file.id} className='text-center text-sm p-2'>
                             {file.file_name}
                         </p>
-                        </div>
+
                     )))
                 }
             </div>
